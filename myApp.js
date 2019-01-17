@@ -204,13 +204,20 @@ var findPersonById = function(personId, done) {
 // (http://mongoosejs.com/docs/schematypes.html - #Mixed )
 
 var findEditThenSave = function(personId, done) {
-  var foodToAdd = "hamburger";
-  Person.findById(personId, function(err, data) {
-    if (err) {
-      done(err);
+  var foodToAdd = 'hamburger';
+  Person.findById(personId, function(err, data){
+    if(err){
+      return done(err);
+    }else{
+      data.favoriteFoods.push(foodToAdd);
+      data.save(function(err, data){
+        if(err){
+          return done(err);
+        }else{
+          return done(null, data);
+        }
+      });
     }
- data.favoriteFoods.push(foodToAdd);
-    data.save(function(err, data){if(err){return done(err)}return done(null, data)});
   });
 };
 
