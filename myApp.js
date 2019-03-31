@@ -8,7 +8,7 @@
 
 /** 1) Install & Set up mongoose */
 var mongoose = require("mongoose");
-mongoose.connect('mongodb://johnny1:database0451@ds235388.mlab.com:35388/johnny');
+mongoose.connect(process.env.DATABASE);
 
 // Add `mongodb` and `mongoose` to the project's `package.json`. Then require 
 // `mongoose`. Store your **mLab** database URI in the private `.env` file 
